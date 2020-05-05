@@ -14,7 +14,7 @@ use Yii;
  * @property int $active
  * @property int $questions_group_id Группа вопросов для этого теста
  *
- * @property Quiz $quiz
+ * @property QuizTheme $quiz
  * @property QuestionsGroup $questionsGroup
  * @property QuizTestUserList[] $quizTestUserLists
  * @property SpecialKeys[] $specialKeys
@@ -38,7 +38,7 @@ class QuizTest extends \yii\db\ActiveRecord
             [['start_time', 'quiz_id', 'questions_group_id'], 'required'],
             [['start_time', 'finish_time'], 'safe'],
             [['quiz_id', 'active', 'questions_group_id'], 'integer'],
-            [['quiz_id'], 'exist', 'skipOnError' => true, 'targetClass' => Quiz::className(), 'targetAttribute' => ['quiz_id' => 'id']],
+            [['quiz_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuizTheme::className(), 'targetAttribute' => ['quiz_id' => 'id']],
             [['questions_group_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuestionsGroup::className(), 'targetAttribute' => ['questions_group_id' => 'id']],
         ];
     }
@@ -65,7 +65,7 @@ class QuizTest extends \yii\db\ActiveRecord
      */
     public function getQuiz()
     {
-        return $this->hasOne(Quiz::className(), ['id' => 'quiz_id']);
+        return $this->hasOne(QuizTheme::className(), ['id' => 'quiz_id']);
     }
 
     /**

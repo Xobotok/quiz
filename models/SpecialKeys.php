@@ -7,7 +7,6 @@ use Yii;
 /**
  * This is the model class for table "special_keys".
  *
- * @property int $id
  * @property string $special_key
  * @property int $quiz_test_id
  * @property int $active
@@ -32,8 +31,9 @@ class SpecialKeys extends \yii\db\ActiveRecord
     {
         return [
             [['special_key', 'quiz_test_id'], 'required'],
-            [['special_key'], 'string'],
             [['quiz_test_id', 'active', 'count'], 'integer'],
+            [['special_key'], 'string', 'max' => 128],
+            [['special_key'], 'unique'],
             [['quiz_test_id'], 'exist', 'skipOnError' => true, 'targetClass' => QuizTest::className(), 'targetAttribute' => ['quiz_test_id' => 'id']],
         ];
     }
@@ -44,7 +44,6 @@ class SpecialKeys extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'special_key' => 'Special Key',
             'quiz_test_id' => 'Quiz Test ID',
             'active' => 'Active',

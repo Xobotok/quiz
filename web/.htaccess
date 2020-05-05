@@ -1,3 +1,4 @@
+php_value error_reporting 22527
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
